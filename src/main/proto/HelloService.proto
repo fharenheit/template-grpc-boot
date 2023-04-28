@@ -10,7 +10,15 @@ message HelloRequest {
 message HelloResponse {
   string greeting = 1;
 }
+message HelloRequestMap {
+  map<string, string> args = 1;
+}
+
+message HelloResponseMap {
+  map<string, string> result = 1;
+}
 
 service HelloService {
   rpc hello(HelloRequest) returns (HelloResponse);
+  rpc helloMap(HelloRequestMap) returns (HelloResponseMap);
 }
