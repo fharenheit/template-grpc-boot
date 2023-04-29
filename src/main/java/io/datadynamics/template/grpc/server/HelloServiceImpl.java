@@ -1,9 +1,9 @@
 package io.datadynamics.template.grpc.server;
 
-import io.datadynamics.template.grpc.HelloRequest;
-import io.datadynamics.template.grpc.HelloResponse;
-import io.datadynamics.template.grpc.HelloServiceGrpc;
+import io.datadynamics.template.grpc.*;
 import io.grpc.stub.StreamObserver;
+
+import java.util.Map;
 
 public class HelloServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
 
@@ -21,6 +21,16 @@ public class HelloServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
                 .setGreeting(greeting)
                 .build();
 
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void helloMap(HelloRequestMap request, StreamObserver<HelloResponseMap> responseObserver) {
+        Map<String, String> argsMap = request.getArgsMap();
+        String hello = argsMap.get("hello");
+
+        HelloResponseMap response = HelloResponseMap.newBuilder().putResult("hello", hello).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }

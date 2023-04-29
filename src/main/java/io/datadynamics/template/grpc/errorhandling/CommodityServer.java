@@ -61,6 +61,10 @@ public class CommodityServer {
                 .nextDouble(-0.2d, 0.2d);
     }
 
+    public Server getServer() {
+        return server;
+    }
+
     public void start() throws IOException {
         server.start();
         logger.info("Server started, listening on {}", port);
