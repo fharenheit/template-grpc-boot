@@ -33,6 +33,10 @@ public class CommodityServer {
     private final int port;
     private final Server server;
 
+    public Server getServer() {
+        return server;
+    }
+
     public CommodityServer(int port) throws IOException {
         this.port = port;
         server = ServerBuilder.forPort(port)
