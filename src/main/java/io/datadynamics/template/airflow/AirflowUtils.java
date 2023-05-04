@@ -22,10 +22,11 @@ public class AirflowUtils {
 
     public static RestTemplate template = new RestTemplate();
 
-    public static SimpleDateFormat timestampFormtter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX");
+    public static String _AIRFLOW_TIMESTAMP_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX";
+
+    public static SimpleDateFormat timestampFormatter = new SimpleDateFormat(_AIRFLOW_TIMESTAMP_FORMAT);
 
     public static void main(String[] args) {
-
         String username = "admin";
         String password = "admin";
 
