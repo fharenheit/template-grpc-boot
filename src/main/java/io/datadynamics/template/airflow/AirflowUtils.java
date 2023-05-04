@@ -1,14 +1,19 @@
 package io.datadynamics.template.airflow;
 
-import io.datadynamics.template.airflow.model.Dags;
-import org.springframework.http.*;
+import io.datadynamics.template.airflow.model.dag.Dags;
+import io.datadynamics.template.airflow.model.dagrun.Root;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 /**
  * Airflow 호출을 위한 유틸리티.
- *
+ * <p>
  * Airflow의 인증 방식이 Basic Auth가 되어 있는지 확인이 필요하다(airflow config get-value api auth_backends).
  *
  * @ses <a href="https://airflow.apache.org/docs/apache-airflow/stable/administration-and-deployment/security/api.html">API Authentication</a>
@@ -16,6 +21,8 @@ import java.util.Arrays;
 public class AirflowUtils {
 
     public static RestTemplate template = new RestTemplate();
+
+    public static SimpleDateFormat timestampFormtter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX");
 
     public static void main(String[] args) {
 
@@ -29,13 +36,7 @@ public class AirflowUtils {
 
         HttpEntity requestEntity = new HttpEntity(headers);
 
-        System.out.println(requestEntity);
-
-        ResponseEntity<Dags> forEntity = template.exchange
-                ("http://192.168.226.129:8080/api/v1/dags?limit=100&only_active=true",
-                        HttpMethod.GET, requestEntity, Dags.class);
-
-        System.out.println(forEntity.getBody());
+        System.out.println(template.exchange("http://192.168.226.129:8080/api/v1/dags?limit=100&only_active=true", HttpMethod.GET, requestEntity, Dags.class).getBody());
+        System.out.println(template.exchange("http://192.168.226.129:8080/api/v1/dags/tutorial/dagRuns?limit=100", HttpMethod.GET, requestEntity, Root.class).getBody());
     }
-
 }
