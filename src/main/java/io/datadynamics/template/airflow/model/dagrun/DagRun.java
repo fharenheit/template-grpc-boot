@@ -2,14 +2,16 @@ package io.datadynamics.template.airflow.model.dagrun;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 import java.util.Map;
 
 @Data
 @ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class DagRun {
 
     @JsonProperty("conf")
