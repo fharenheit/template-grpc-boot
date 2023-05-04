@@ -65,7 +65,7 @@ public class AirflowUtils {
                 .conf(conf)
                 .dagRunId(String.format("api__%s__%s", now.getTime(), ssoId))
                 .logicalDate(now)
-                .note("NOTE NOTE NOTE")
+                .note("fharenheit")
                 .build();
 
         HttpEntity requestEntity = new HttpEntity(req, headers);
