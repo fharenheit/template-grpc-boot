@@ -2,9 +2,11 @@ package io.datadynamics.template.grpc.server.streaming.server;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+@Slf4j
 public class StreamServiceServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -13,10 +15,10 @@ public class StreamServiceServer {
                 .addService(new StreamServiceImpl())
                 .build();
 
-        System.out.println("Starting server...");
+        log.info("Starting server...");
         server.start();
 
-        System.out.println("Server started!");
+        log.info("Server started!");
         server.awaitTermination();
     }
 
