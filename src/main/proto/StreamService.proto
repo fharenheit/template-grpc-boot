@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package io.datadynamics.template.grpc.server.streaming.server;
+
+message Request {
+  string name = 1;
+}
+
+message Response {
+  string token = 1;
+}
+
+service StreamService {
+  rpc getData(Request) returns (stream Response) {}
+}

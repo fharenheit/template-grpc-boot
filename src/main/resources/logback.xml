@@ -32,6 +32,9 @@
     <logger name="springfox" level="WARN"/>
     <logger name="springfox.documentation" level="INFO"/>
 
+    <!-- GRPC -->
+    <logger name="io.grpc" level="INFO"/>
+
     <logger name="jdbc.sqlonly" level="WARN"/>
     <logger name="jdbc.sqltiming" level="WARN"/>
     <logger name="jdbc.resultset" level="WARN"/>
